@@ -4,6 +4,7 @@ import ExpenseItem from './ExpenseItem';
 import Card from '../Card/Card';
 import './Expenses.css';
 
+// TODO: refactor to use iteration/any kind related
 const Expenses = (props) => {
   return (
     <Card className="expenses">

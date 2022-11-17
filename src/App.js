@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
+import { getComments } from './controlers/index'
 
 const DATA_EXPENSES = [
   {
@@ -30,9 +31,8 @@ const App = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/comments')
-      .then(response => response.json())
-      .then(json => setData(json))
+    getComments()
+      .then((json) => setData(json))
   }, []);
   console.log(data, 'data')
 
@@ -46,7 +46,7 @@ const App = () => {
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+      <Expenses items={expenses} />    
     </div>
   );
 }

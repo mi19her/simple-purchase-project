@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
@@ -27,6 +27,16 @@ const DATA_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(DATA_EXPENSES);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then(response => response.json())
+      .then(json => setData(json))
+  }, []);
+  console.log(data, 'data')
+
+
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
